@@ -8,7 +8,8 @@ from rest_framework import status
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
-ME_URL = reverse('user:me') # Better to call it AUTH_REQUIRED_URL.
+ME_URL = reverse('user:me')  # Better to call it AUTH_REQUIRED_URL.
+
 
 def create_user(**params):
     """Helper function to create new user"""
@@ -54,7 +55,8 @@ class PublicUserApiTests(TestCase):
             email=payload['email']
         ).exists()
         self.assertFalse(user_exists)
-#******************* Added Token Tests Here *******************
+# ******************* Added Token Tests Here *******************
+
     def test_create_token_for_user(self):
         """Test that a token is created for the user"""
         payload = {'email': 'test@londonappdev.com', 'password': 'testpass'}
@@ -86,7 +88,8 @@ class PublicUserApiTests(TestCase):
         res = self.client.post(TOKEN_URL, {'email': 'one', 'password': ''})
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-#******************** Added Manage User Tests Here ********************
+# ******************** Added Manage User Tests Here ********************
+
     def test_retrieve_user_unauthorized(self):
         """Test that authentication required for users"""
         res = self.client.get(ME_URL)

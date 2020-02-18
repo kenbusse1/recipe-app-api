@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         return user
 
-#*************** Added code for Token Serializing ***************
+# *************** Added code for Token Serializing ***************
 
 
 class AuthTokenSerializer(serializers.Serializer):
